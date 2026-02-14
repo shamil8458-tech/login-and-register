@@ -3,223 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style >
-    </style>
-</head>
-<body>
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Store | Dashboard</title>
+    <title>Animated Store Dashboard</title>
     <style>
-        /* Base Styles */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
+        /* Animated Gradient Background */
         body {
-            background-color: #f4f7f6;
-            color: #333;
-        }
-
-        /* Navigation Bar */
-        nav {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 5%;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #3498db;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        /* Product Grid */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        /* Product Card */
-        .card {
-            background: white;
-            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 15px;
-        }
-
-        .price {
-            color: #e67e22;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .buy-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #3498db;
+        /* Main Glassmorphism Container */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            width: 85%;
+            max-width: 1000px;
+            padding: 40px;
             color: white;
-            border: none;
-            border-radius: 5px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            /* Entrance Animation */
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            animation: fadeIn 2s ease-in;
+        }
+
+        /* Grid Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* Animated Cards */
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.4s;
             cursor: pointer;
+            border: 1px solid transparent;
+            /* Staggered Animation Delay */
+            animation: fadeIn 1.5s ease-in both;
+        }
+
+        .stat-box:nth-child(1) { animation-delay: 0.3s; }
+        .stat-box:nth-child(2) { animation-delay: 0.5s; }
+        .stat-box:nth-child(3) { animation-delay: 0.7s; }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05) rotate(2deg);
+            border: 1px solid white;
+        }
+
+        .stat-box h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .stat-box p { font-size: 1.5rem; font-weight: bold; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Floating Button */
+        .cta-btn {
+            display: block;
+            width: 200px;
+            margin: 40px auto 0;
+            padding: 15px;
+            background: white;
+            color: #e73c7e;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
             font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .buy-btn:hover {
-            background-color: #2980b9;
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #2d3436;
+            color: white;
         }
 
-        /* Responsive Settings */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-            }
-            nav ul {
-                margin-top: 15px;
-            }
-            .hero {
-                height: 200px;
-            }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .glass-panel { padding: 20px; width: 95%; }
+            .header h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">GEMINI STORE</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Cart</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </nav>
+    <div class="glass-panel">
+        <div class="header">
+            <h1>Welcome to the Future ✨</h1>
+            <p>Login Successful! Your dashboard is ready.</p>
+        </div>
 
-    <header class="hero">
-        <h1>Welcome Back!</h1>
-        <p>Explore our latest collection curated just for you.</p>
-    </header>
-
-    <div class="container">
-        <h2 style="margin-bottom: 20px;">Trending Now</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="Watch">
-                <div class="card-content">
-                    <h3>Premium Watch</h3>
-                    <p>Classic aesthetic with modern features.</p>
-                    <p class="price">$199.00</p>
-                    <button class="buy-btn">Add to Cart</button>
-                </div>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h3>Total Orders</h3>
+                <p>128</p>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="Headphones">
-                <div class="card-content">
-                    <h3>Wireless Headphones</h3>
-                    <p>Noise cancelling, high fidelity sound.</p>
-                    <p class="price">$150.00</p>
-                    <button class="buy-btn">Add to Cart</button>
-                </div>
+            <div class="stat-box">
+                <h3>Earnings</h3>
+                <p>$4,250</p>
             </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=80" alt="Camera">
-                <div class="card-content">
-                    <h3>Digital Camera</h3>
-                    <p>Capture your moments in 4K resolution.</p>
-                    <p class="price">$599.00</p>
-                    <button class="buy-btn">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Shoes">
-                <div class="card-content">
-                    <h3>Sport Sneakers</h3>
-                    <p>Comfort and style for your daily run.</p>
-                    <p class="price">$85.00</p>
-                    <button class="buy-btn">Add to Cart</button>
-                </div>
+            <div class="stat-box">
+                <h3>New Messages</h3>
+                <p>12</p>
             </div>
         </div>
+
+        <a href="#" class="cta-btn">Get Started</a>
     </div>
 
 </body>
 </html>
-
-    
-</body>
-
-</html>
-
