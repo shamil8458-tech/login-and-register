@@ -12,9 +12,9 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Animated Gradient Background */
+        /* 1. NERATHE ISHTAPPETTA ATHE MOVING BACKGROUND */
         body {
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #6c5ce7);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             height: 100vh;
@@ -33,23 +33,23 @@
 
         /* Glassmorphism Panel */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
             width: 85%;
             max-width: 600px;
             padding: 40px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: all 0.6s ease-in-out;
         }
 
-        /* Initial Hide for the second screen */
+        /* Initial Hide for Second Screen */
         #second-screen {
             display: none;
             opacity: 0;
-            transform: scale(0.8);
+            transform: translateY(30px);
         }
 
         .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
@@ -60,12 +60,22 @@
             margin: 30px 0;
         }
 
+        /* 2. STAT-BOX HOVER EFFECTS (Back Again!) */
         .stat-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.4s;
+            cursor: pointer;
             animation: fadeIn 1s ease forwards;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05) rotate(2deg); /* Nertheulla aa tilt effect */
+            border: 1px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* Button Styling */
@@ -73,29 +83,21 @@
             display: inline-block;
             padding: 15px 40px;
             background: white;
-            color: #6c5ce7;
+            color: #e73c7e;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
             border: none;
             transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .cta-btn:hover {
-            transform: translateY(-3px);
-            background: #6c5ce7;
+            transform: translateY(-5px);
+            background: #2d3436;
             color: white;
-            box-shadow: 0 0 20px rgba(108, 92, 231, 0.6);
-        }
-
-        /* Confetti or Magic text */
-        .magic-text {
-            font-size: 1.5rem;
-            color: #fab1a0;
-            margin-top: 20px;
-            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         @keyframes fadeIn {
@@ -103,10 +105,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Class for hiding with animation */
         .fade-out {
             opacity: 0 !important;
-            transform: translateY(-50px) scale(0.9) !important;
+            transform: scale(0.9) !important;
         }
     </style>
 </head>
@@ -115,52 +116,48 @@
     <div class="glass-panel" id="main-panel">
         <div class="header">
             <h1>Welcome ✨</h1>
-            <p>Login Successful! Your dashboard is ready.</p>
+            <p>Login Successful!</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-box" style="animation-delay: 0.2s;"><h3>Believe Your Self!</h3></div>
             <div class="stat-box" style="animation-delay: 0.4s;"><h3>Try Hard!</h3></div>
-            <div class="stat-box" style="animation-delay: 0.6s;"><h3>Win Better</h3></div>
+            <div class="stat-box" style="animation-delay: 0.6s;"><h3>Win Better..</h3></div>
         </div>
 
-        <button class="cta-btn" onclick="startMagic()">Get Started</button>
+        <button class="cta-btn" onclick="showNext()">Get Started</button>
     </div>
 
     <div class="glass-panel" id="second-screen">
         <div class="header">
             <h1>Let's Go! 🚀</h1>
-            <p class="magic-text">"The only way to do great work is to love what you do."</p>
+            <p style="font-size: 1.2rem; margin: 20px 0;">"Small steps lead to big changes."</p>
         </div>
-        <div style="margin-top: 30px;">
-            <p>Your journey begins now. What do you want to build today?</p>
-        </div>
+        <p>Your journey is starting. Ready to explore?</p>
         <br>
-        <button class="cta-btn" onclick="goBack()" style="background: rgba(255,255,255,0.1); color: white;">Go Back</button>
+        <button class="cta-btn" onclick="goBack()" style="background: rgba(255,255,255,0.2); color: white;">Go Back</button>
     </div>
 
     <script>
-        function startMagic() {
+        function showNext() {
             const main = document.getElementById('main-panel');
             const second = document.getElementById('second-screen');
 
-            // Fade out the first screen
             main.classList.add('fade-out');
 
             setTimeout(() => {
                 main.style.display = 'none';
                 second.style.display = 'block';
                 
-                // Trigger entry animation for second screen
                 setTimeout(() => {
                     second.style.opacity = '1';
-                    second.style.transform = 'scale(1)';
+                    second.style.transform = 'translateY(0)';
                 }, 50);
-            }, 600);
+            }, 500);
         }
 
         function goBack() {
-            location.reload(); // Simple way to reset everything
+            location.reload(); 
         }
     </script>
 
